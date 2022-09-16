@@ -1,9 +1,9 @@
 '''
 This is the app created by Ihor Halas for BNproject.
-Take data from xlsx file for certaine date,
+Retrieve data from xlsx file for certain date,
 modify it and add needed data to database in table Orders.
-After that create and send remainding massege to the client.
-And finaly greate and update a Clients table in Database.
+After that create and send remainding message to the client.
+And finally create and update a Clients table in Database.
 
 Classes:
    ReadFile
