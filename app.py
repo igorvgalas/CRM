@@ -24,6 +24,7 @@ Variable:
     my_df
     my_list
     my_list_of_orders
+    This is a test COMMIT
 '''
 
 from order_data_preparer import OrderDataPreparer
