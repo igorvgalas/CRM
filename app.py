@@ -17,6 +17,8 @@ Functions:
    clean_table_orders
    add_data_to_orders
    add_records_to_clients
+   create_massage
+   send_massage
 
 Variable:
     data_frame
@@ -24,13 +26,16 @@ Variable:
     my_df
     my_list
     my_list_of_orders
+    today_remainds
+
 '''
 
 from order_data_preparer import OrderDataPreparer
 from read_file import ReadFile
 from formating_phone_number import formating_phone_number
 from load_data_to_database import LoadDataToDatabase
-
+from createmassege import create_massage
+from send import send_massage
 
 CURRENT_DATE = '2022-10-01'  # curr_date = pd.to_datetime('today').date()
 FILE_NAME = 'October.xlsx'
@@ -54,4 +59,5 @@ my_list_of_orders.clean_table_orders()
 my_list_of_orders.add_data_to_orders()
 my_list_of_orders.add_records_to_clients()
 
-print('Message was send seccecfully')
+today_remainds = create_massage(my_list)
+send_massage(today_remainds)
