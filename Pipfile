@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 twilio = "*"
 pandas = "*"
+"path.py" = "*"
+pydrive = "*"
 
 [dev-packages]
 pylint = "*"
