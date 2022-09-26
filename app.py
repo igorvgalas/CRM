@@ -53,11 +53,12 @@ my_df.pick_data_by_date(CURRENT_DATE)
 my_df.extract_data_to_list()
 
 my_list = formating_phone_number(my_df.data_frame)
-
+# print(my_list)
 my_list_of_orders = LoadDataToDatabase(my_list)
 my_list_of_orders.clean_table_orders()
 my_list_of_orders.add_data_to_orders()
 my_list_of_orders.add_records_to_clients()
 
 today_remainds = create_massage(my_list)
+# print(today_remainds)
 send_massage(today_remainds)
