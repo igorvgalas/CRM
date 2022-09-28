@@ -1,13 +1,14 @@
 '''
 This module created by Ihor Halas for BNproject.
 
-Classes:
-
+It's make http request to post data for Turbo sms servise for 
+sending a remainds messades for clients appointment
 
 Functions:
-
+send_message
 
 Variable:
+today_remaings_dict -> containe message and phone number for every appointment.
 
 '''
 
