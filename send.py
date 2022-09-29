@@ -17,8 +17,9 @@ from config import auth_token
 
 
 def send_message(today_remaings_dict):
-    '''Take dict with phone number as key and text of massage as a value,
-     iterate through this dict and send post request to send massage with remainds'''
+    '''This method takes dictionary with phone number as value and text of massage as a key,
+     iterates through this dictionary sends post request using TurboSMS API.
+     After that TurboSMS sends a reminder sms to clients'''
     for key,  value in today_remaings_dict.items():
         response = requests.post(
             'https://api.turbosms.ua/message/send.json',

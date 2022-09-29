@@ -18,13 +18,13 @@ if __name__ == "__main__":
 
 
 class ReadFile():
-    '''...'''
+    '''Class of ready to read files'''
 
     def __init__(self):
         pass
 
     def read_orders_file(self, filename, sheetname):
-        '''Read xlsx file and create DateTime column'''
+        '''Read Google Sheeds files and create DateTime column'''
         warnings.simplefilter(action='ignore', category=UserWarning)
         data_frame = pd.read_excel(filename, sheetname)
         data_frame['DateTime'] = data_frame['Date'].astype(

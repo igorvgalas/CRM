@@ -20,7 +20,7 @@ Functions:
    create_message
    send_message
 
-Variable:
+Variables:
     data_frame
     df
     my_df

@@ -14,13 +14,13 @@ if __name__ == "__main__":
 
 
 class OrderDataPreparer:
-    '''...'''
+    '''Class of dataframes'''
 
     def __init__(self, data_frame):
         self.data_frame = data_frame
 
     def pick_data_by_date(self, date):
-        '''pick up the data by the current date'''
+        '''Pick up the data by the current date'''
         self.data_frame = self.data_frame[(self.data_frame['Date'] == date) & (
             self.data_frame['Phone_number'].notna())]
 
