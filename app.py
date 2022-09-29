@@ -53,4 +53,4 @@ my_list_of_orders.add_records_to_clients()
 
 today_remainds = create_message(my_list)
 print(today_remainds)
-# send_message(today_remainds)
+send_message(today_remainds)

@@ -38,3 +38,11 @@ def send_message(today_remaings_dict):
                 'Authorization': f'Bearer {auth_token}'}
         )
         return response
+
+
+def main() -> None:
+    print('Remaind message was sent successfully')
+
+
+if __name__ == "__main__":
+    main()
