@@ -25,10 +25,10 @@ def send_message(today_remaings_dict):
             'https://api.turbosms.ua/message/send.json',
             json={
                 "recipients": [f"{value}"],
-                "viber": {
-                    "sender": "Mobibon",
-                    "text": f"{key}"
-                },
+                # "viber": {
+                # "sender": "Mobibon",
+                # "text": f"{key}"
+                # },
                 "sms": {
                     "sender": "BEAUTY",
                     "text": f"{key}"
@@ -38,12 +38,3 @@ def send_message(today_remaings_dict):
                 'Content-Type': 'application/json',
                 'Authorization': f'Bearer {auth_token}'}
         )
-        return response
-
-
-def main() -> None:
-    print('Remaind message was sent successfully')
-
-
-if __name__ == "__main__":
-    main()

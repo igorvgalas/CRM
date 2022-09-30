@@ -43,7 +43,8 @@ data_frame = ReadFile()
 df = data_frame.read_orders_file(spreadsheet_url, sheet_name)
 
 my_df = OrderDataPreparer(df)
-my_df.pick_data_by_date(pick_up_date(1))
+tomorrow_date = pick_up_date(days=1)
+my_df.pick_data_by_date(f'{tomorrow_date}')
 my_df.extract_data_to_list()
 
 my_list = formating_phone_number(my_df.data_frame)

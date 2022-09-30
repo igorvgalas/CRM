@@ -8,6 +8,7 @@ twilio = "*"
 pandas = "*"
 "path.py" = "*"
 pydrive = "*"
+openpyxl = "*"
 
 [dev-packages]
 pylint = "*"
