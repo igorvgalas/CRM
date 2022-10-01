@@ -49,8 +49,7 @@ my_df.extract_data_to_list()
 
 my_list = formating_phone_number(my_df.data_frame)
 my_list_of_orders = LoadDataToDatabase(my_list)
-my_list_of_orders.add_data_to_orders()
-my_list_of_orders.add_records_to_clients()
+my_list_of_orders.add_data_to_database()
 
 today_remainds = create_message(my_list)
 print(today_remainds)
