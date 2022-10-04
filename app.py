@@ -12,9 +12,9 @@ Classes:
 
 Functions:
    pick_data_by_date
-   pick_up_date
    extract_data_to_list
-   formating_phone_number
+   format_phone_number
+   format_date_time
    add_data_to_orders
    add_records_to_clients
    create_message
@@ -25,32 +25,33 @@ Variables:
     df
     my_df
     my_list
-    my_list_of_orders
+    my_list_to_orders
     today_remainds
 
 '''
 from datetime import timedelta, date
 from config import spreadsheet_url, sheet_name
-from read_file import ReadFile
-from order_data_preparer import OrderDataPreparer
-from formating_order_list import formating_phone_number, format_date_time
-from load_data_to_database import LoadDataToDatabase
+from ReadFile import ReadFile
+from OrderDataPreparer import OrderDataPreparer
+from Format import Format
+from LoadDataToDatabase import LoadDataToDatabase
 from create_sms import create_sms
 from send_sms import send_sms
 
 
-data_frame = ReadFile()
-df = data_frame.read_orders_file(spreadsheet_url, sheet_name)
+data_frame = ReadFile(spreadsheet_url, sheet_name)
+df = data_frame.read_orders_file()
 
 my_df = OrderDataPreparer(df)
 my_df.pick_data_by_date(str(date.today() + timedelta(1)))
-my_df.extract_data_to_list()
+order_list = my_df.extract_data_to_list()
 
-#my_list_of_orders = LoadDataToDatabase(my_list)
-# my_list_of_orders.add_data_to_database()
+sms_list = Format(order_list)
+load_to_orders = LoadDataToDatabase(order_list)
+sms_list.format_phone_number()
+load_to_orders.add_data_to_database()
+sms_list.format_date_time()
 
-my_list = formating_phone_number(my_df.data_frame)
-my_list = format_date_time(my_df.data_frame)
-today_remainds = create_sms(my_list)
-# send_sms(today_remainds)
-print(today_remainds)
+today_reminder = create_sms(order_list)
+
+send_sms(today_reminder)

@@ -10,7 +10,7 @@ Variable:
 '''
 if __name__ == "__main__":
     from config import spreadsheet_url, sheet_name
-    from read_file import ReadFile
+    from ReadFile import ReadFile
 
 
 class OrderDataPreparer:
@@ -28,13 +28,13 @@ class OrderDataPreparer:
         '''Put the data from dataframe to list '''
         self.data_frame = self.data_frame[[
             'Client', 'Phone_number', 'DateTime', 'Servise', 'Sum', 'Payment']]
-        self.data_frame = self.data_frame.values
-        return self.data_frame
+        order_list = self.data_frame.values
+        return order_list
 
 
 if __name__ == "__main__":
-    dataframe = ReadFile()
-    df = dataframe.read_orders_file(spreadsheet_url, sheet_name)
+    dataframe = ReadFile(spreadsheet_url, sheet_name)
+    df = dataframe.read_orders_file()
     dframe = OrderDataPreparer(df)
     dframe.pick_data_by_date(date='2022-10-01')
     mlist = dframe.extract_data_to_list()
