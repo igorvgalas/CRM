@@ -29,28 +29,28 @@ Variables:
     today_remainds
 
 '''
+from datetime import timedelta, date
 from config import spreadsheet_url, sheet_name
-from current_date import pick_up_date
-from order_data_preparer import OrderDataPreparer
 from read_file import ReadFile
-from formating_phone_number import formating_phone_number
+from order_data_preparer import OrderDataPreparer
+from formating_order_list import formating_phone_number, format_date_time
 from load_data_to_database import LoadDataToDatabase
-from create_message import create_message
-from send import send_message
+from create_sms import create_sms
+from send_sms import send_sms
 
 
 data_frame = ReadFile()
 df = data_frame.read_orders_file(spreadsheet_url, sheet_name)
 
 my_df = OrderDataPreparer(df)
-tomorrow_date = pick_up_date(days=1)
-my_df.pick_data_by_date(f'{tomorrow_date}')
+my_df.pick_data_by_date(str(date.today() + timedelta(1)))
 my_df.extract_data_to_list()
 
-my_list = formating_phone_number(my_df.data_frame)
-my_list_of_orders = LoadDataToDatabase(my_list)
-my_list_of_orders.add_data_to_database()
+#my_list_of_orders = LoadDataToDatabase(my_list)
+# my_list_of_orders.add_data_to_database()
 
-today_remainds = create_message(my_list)
+my_list = formating_phone_number(my_df.data_frame)
+my_list = format_date_time(my_df.data_frame)
+today_remainds = create_sms(my_list)
+# send_sms(today_remainds)
 print(today_remainds)
-send_message(today_remainds)

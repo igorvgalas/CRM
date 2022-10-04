@@ -25,7 +25,7 @@ class LoadDataToDatabase:
             cursor = conn.cursor()
             for row in self.my_list:
                 cursor.execute(
-                    ("INSERT INTO Orders VALUES (Null,?,?,?,?)"), list(row))
+                    ("INSERT INTO Orders VALUES (Null,?,?,?,?,?,?)"), list(row))
             cursor.execute('''INSERT OR IGNORE INTO Clients (OrderID,ClientName, PhoneNumber)
                                          SELECT OrderID, ClientName, PhoneNumber
                                          FROM

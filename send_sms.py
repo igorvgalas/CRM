@@ -16,7 +16,7 @@ import requests
 from config import auth_token
 
 
-def send_message(today_remaings_dict):
+def send_sms(today_remaings_dict):
     '''This method takes dictionary with phone number as value and text of massage as a key,
      iterates through this dictionary sends post request using TurboSMS API.
      After that TurboSMS sends a reminder sms to clients'''

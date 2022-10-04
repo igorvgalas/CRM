@@ -27,7 +27,7 @@ class OrderDataPreparer:
     def extract_data_to_list(self):
         '''Put the data from dataframe to list '''
         self.data_frame = self.data_frame[[
-            'Client', 'Phone_number', 'DateTime', 'Servise']]
+            'Client', 'Phone_number', 'DateTime', 'Servise', 'Sum', 'Payment']]
         self.data_frame = self.data_frame.values
         return self.data_frame
 
