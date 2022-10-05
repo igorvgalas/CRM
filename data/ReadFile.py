@@ -14,7 +14,7 @@ import warnings
 import pandas as pd
 
 if __name__ == "__main__":
-    from config import spreadsheet_url, sheet_name
+    from sms.config import spreadsheet_url, sheet_name
 
 
 class ReadFile:

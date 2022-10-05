@@ -3,7 +3,7 @@ This module created by Ihor Halas for BNproject.
 
 Functions:
    formating_phone_number -Check the phone number and formating it to International format
-
+   format_date_time - return date time in "H:M d/m" format.
 Variable:
     my_list - list of list with customer data that containe phone number
 '''
@@ -11,6 +11,7 @@ from datetime import datetime
 
 
 class Format:
+    '''Format list of orders data'''
 
     def __init__(self, my_list):
         self.my_list = my_list

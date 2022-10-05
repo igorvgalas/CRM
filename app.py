@@ -30,13 +30,13 @@ Variables:
 
 '''
 from datetime import timedelta, date
-from config import spreadsheet_url, sheet_name
-from ReadFile import ReadFile
-from OrderDataPreparer import OrderDataPreparer
-from Format import Format
-from LoadDataToDatabase import LoadDataToDatabase
-from create_sms import create_sms
-from send_sms import send_sms
+from sms.config import spreadsheet_url, sheet_name
+from data.ReadFile import ReadFile
+from data.OrderDataPreparer import OrderDataPreparer
+from data.Format import Format
+from data.LoadDataToDatabase import LoadDataToDatabase
+from sms.create_sms import create_sms
+from sms.send_sms import send_sms
 
 
 data_frame = ReadFile(spreadsheet_url, sheet_name)

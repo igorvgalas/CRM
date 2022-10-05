@@ -13,7 +13,7 @@ today_remaings_dict -> containe message and phone number for every appointment.
 '''
 
 import requests
-from config import auth_token
+from sms.config import auth_token
 
 
 def send_sms(today_remaings_dict):

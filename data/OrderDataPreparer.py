@@ -9,8 +9,8 @@ Variable:
    extract_data_to_list 
 '''
 if __name__ == "__main__":
-    from config import spreadsheet_url, sheet_name
-    from ReadFile import ReadFile
+    from data.configdata import spreadsheet_url, sheet_name
+    from data.ReadFile import ReadFile
 
 
 class OrderDataPreparer:
