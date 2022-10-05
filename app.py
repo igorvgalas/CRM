@@ -30,7 +30,7 @@ Variables:
 
 '''
 from datetime import timedelta, date
-from sms.config import spreadsheet_url, sheet_name
+from data.configdata import spreadsheet_url, sheet_name
 from data.ReadFile import ReadFile
 from data.OrderDataPreparer import OrderDataPreparer
 from data.Format import Format
@@ -44,14 +44,13 @@ df = data_frame.read_orders_file()
 
 my_df = OrderDataPreparer(df)
 my_df.pick_data_by_date(str(date.today() + timedelta(1)))
-order_list = my_df.extract_data_to_list()
+order_list = my_df.extract_data_to_list().tolist()
 
 sms_list = Format(order_list)
 load_to_orders = LoadDataToDatabase(order_list)
 sms_list.format_phone_number()
 load_to_orders.add_data_to_database()
 sms_list.format_date_time()
-
 today_reminder = create_sms(order_list)
-
+# print(today_reminder)
 send_sms(today_reminder)

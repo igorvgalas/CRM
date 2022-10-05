@@ -4,11 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-twilio = "*"
 pandas = "*"
 "path.py" = "*"
 pydrive = "*"
 openpyxl = "*"
+mysql = "*"
+mysql-connector-python = "*"
+numpy = "*"
 
 [dev-packages]
 pylint = "*"
