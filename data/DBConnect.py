@@ -11,7 +11,7 @@ Variable:
 
 '''
 import mysql.connector
-from SingletonClass import SingletonClass
+from data.SingletonClass import SingletonClass
 
 
 class DBConnect:

@@ -33,7 +33,7 @@ from datetime import timedelta, date
 from data.configdata import spreadsheet_url, sheet_name
 from data.ReadOrderFile import ReadOrderFile
 from data.Format import Format
-from DBConnect import DBConnect
+from data.DBConnect import DBConnect
 from sms.create_sms import create_sms
 from sms.send_sms import send_sms
 
@@ -45,10 +45,11 @@ order_list = order_data.tolist()
 sms_list = Format(order_list)
 client_list = sms_list.format_phone_number()
 
-#loader = DBConnect(client_list)
+loader = DBConnect(client_list)
 # loader.make_records_client()
 # loader.make_records_orders()
+
 sms_list.format_date_time()
-today_reminder = create_sms(order_list)
-print(len(today_reminder))
-send_sms(today_reminder)
+today_reminder = create_sms(client_list)
+
+# send_sms(today_reminder)
