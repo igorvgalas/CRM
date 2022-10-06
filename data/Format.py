@@ -24,6 +24,7 @@ class Format():
         '''Formar order list before sending sms'''
         self.__del_incorrects()
         self.__add_code_to_phone_number()
+        return self.my_list
 
     def format_date_time(self):
         '''Format date time to make it shorter for sms sending'''
