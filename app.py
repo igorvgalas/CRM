@@ -43,16 +43,16 @@ order_list = readOrderFile.toArray().tolist()
 
 sms_list = Format(order_list)
 client_list = sms_list.format_phone_number()
-
 conn = DBConnect(database_name).get_connection()
-cursor = conn.cursor()
-clients_record = DBRecords(client_list).records_client()
-orders_record = DBRecords(client_list).records_orders()
-#cursor.executemany(DBRecords.query_orders, orders_record)
-#cursor.executemany(DBRecords.query_client, clients_record)
+
+recorder = DBRecords(conn, client_list)
+recorder.records_orders()
+
+# cursor.executemany(DBRecords.query_orders, orders_record)
+# cursor.executemany(DBRecords.query_client, clients_record)
 # conn.commit()
 
 sms_list.format_date_time()
 today_reminder = create_sms(client_list)
 
-send_sms(today_reminder)
+# send_sms(today_reminder)'''

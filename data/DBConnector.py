@@ -29,25 +29,28 @@ class DBConnect:
 
 class DBRecords:
 
-    query_client = '''INSERT IGNORE INTO Clients (id, client_name, phone_number) VALUES (Null,%s,%s) '''
-    query_orders = '''INSERT INTO 
-        Orders (id, phone_number, appointment_date_time, service_name, pay_amount, pay_method) 
-        VALUES (Null,%s,%s,%s,%s,%s) '''
-
-    def __init__(self, client_list):
+    def __init__(self, conn, client_list):
         self.client_list = client_list
-
-    def records_client(self):
-        records_client = []
-        for item in self.client_list:
-            records_client.append(item[0:2])
-        return records_client
+        self.conn = conn
 
     def records_orders(self):
-        records_orders = []
-        for item in self.client_list:
-            records_orders.append(item[1:])
-        return records_orders
+        cursor = self.conn.cursor()
+        for client in self.client_list:
+            cursor.execute(
+                'SELECT * from Clients WHERE phone_number ='+f'{client[1]}')
+            check_exist = cursor.fetchone()
+            if check_exist is not None:
+                client.append(check_exist[0])
+            if check_exist is None:
+                cursor.execute(
+                    'INSERT INTO Clients (id, client_name, phone_number) VALUES (Null,%s,%s)', client[0:2])
+                cursor.execute(
+                    'SELECT * FROM Clients WHERE phone_number =' + f'{client[1]}')
+                created_client = cursor.fetchone()
+                client.append(created_client[0])
+            cursor.execute(
+                'INSERT INTO Orders (id, appointment_date_time, service_name, pay_amount, pay_method, client_id) VALUES (Null,%s,%s,%s,%s,%s)', client[2:])
+        self.conn.commit()
 
 
 if __name__ == '__main__':
