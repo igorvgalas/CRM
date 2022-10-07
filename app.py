@@ -30,26 +30,29 @@ Variables:
 
 '''
 from datetime import timedelta, date
-from data.configdata import spreadsheet_url, sheet_name
+from data.configdata import spreadsheet_url, sheet_name, database_name
 from data.ReadOrderFile import ReadOrderFile
 from data.Format import Format
-from data.DBConnect import DBConnect
+from data.DBConnector import DBConnect, DBRecords
 from sms.create_sms import create_sms
 from sms.send_sms import send_sms
 
 readOrderFile = ReadOrderFile(spreadsheet_url, sheet_name)
 readOrderFile.extract_data(str(date.today() + timedelta(1)))
-order_data = readOrderFile.toList()
-order_list = order_data.tolist()
+order_list = readOrderFile.toArray().tolist()
 
 sms_list = Format(order_list)
 client_list = sms_list.format_phone_number()
 
-loader = DBConnect(client_list)
-# loader.make_records_client()
-# loader.make_records_orders()
+conn = DBConnect(database_name).get_connection()
+cursor = conn.cursor()
+clients_record = DBRecords(client_list).records_client()
+orders_record = DBRecords(client_list).records_orders()
+#cursor.executemany(DBRecords.query_orders, orders_record)
+#cursor.executemany(DBRecords.query_client, clients_record)
+# conn.commit()
 
 sms_list.format_date_time()
 today_reminder = create_sms(client_list)
 
-# send_sms(today_reminder)
+send_sms(today_reminder)

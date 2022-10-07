@@ -27,12 +27,12 @@ class ReadOrderFile():
         self.__filterByDate(date)
         self.__modifyData()
 
-    def toList(self):
+    def toArray(self):
         '''Put the data from dataframe to list '''
         self.data_frame = self.data_frame[[
             'Client', 'Phone_number', 'DateTime', 'Service', 'Sum', 'Payment']]
-        order_list = self.data_frame.values
-        return order_list
+        ndarray = self.data_frame.values
+        return ndarray
 
     def __filterByDate(self, date):
         self.data_frame = self.data_frame[(self.data_frame['Date'] == date) & (
