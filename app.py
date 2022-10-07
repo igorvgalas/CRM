@@ -46,7 +46,7 @@ client_list = sms_list.format_phone_number()
 conn = DBConnect(database_name).get_connection()
 
 recorder = DBRecords(conn, client_list)
-recorder.records_orders()
+recorder.record_orders()
 
 # cursor.executemany(DBRecords.query_orders, orders_record)
 # cursor.executemany(DBRecords.query_client, clients_record)

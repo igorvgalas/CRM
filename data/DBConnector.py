@@ -33,7 +33,7 @@ class DBRecords:
         self.client_list = client_list
         self.conn = conn
 
-    def records_orders(self):
+    def record_orders(self):
         cursor = self.conn.cursor()
         for client in self.client_list:
             cursor.execute(
