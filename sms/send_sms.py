@@ -22,7 +22,7 @@ def send_sms(today_remaings_dict):
      After that TurboSMS sends a reminder sms to clients'''
     for key,  value in today_remaings_dict.items():
         response = requests.post(
-            'https://api.turbosms.ua/message/send.json',
+            'https://api.turbosms.ua/message/send.json', timeout=10,
             json={
                 "recipients": [f"{value}"],
                 # "viber": {

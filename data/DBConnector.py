@@ -37,19 +37,16 @@ class DBRecords:
         cursor = self.conn.cursor()
         for client in self.client_list:
             cursor.execute(
-                'SELECT * from Clients WHERE phone_number ='+f'{client[1]}')
+                'SELECT * from clients WHERE phone_number ='+f'{client[1]}')
             check_exist = cursor.fetchone()
             if check_exist is not None:
                 client.append(check_exist[0])
             if check_exist is None:
                 cursor.execute(
-                    'INSERT INTO Clients (id, client_name, phone_number) VALUES (Null,%s,%s)', client[0:2])
-                cursor.execute(
-                    'SELECT * FROM Clients WHERE phone_number =' + f'{client[1]}')
-                created_client = cursor.fetchone()
-                client.append(created_client[0])
+                    'INSERT INTO clients (id, client_name, phone_number) VALUES (Null,%s,%s)', client[0:2])
+                client.append(cursor.lastrowid)
             cursor.execute(
-                'INSERT INTO Orders (id, appointment_date_time, service_name, pay_amount, pay_method, client_id) VALUES (Null,%s,%s,%s,%s,%s)', client[2:])
+                'INSERT INTO orders (id, appointment_date_time, service_name, pay_amount, pay_method, client_id) VALUES (Null,%s,%s,%s,%s,%s)', client[2:])
         self.conn.commit()
 
 

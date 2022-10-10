@@ -14,6 +14,7 @@ def create_sms(order_list):
     today_sms = {}
     for value in order_list:
         message = f'''{value[0]} нагадуємо у Вас запис {value[2]} Beauty nails.В разі змін повідомте на viber 0990820412'''
+        #message = f'''{value[0]} запис {value[2]} Beauty nails скасовано.Звяжемося з Вами після стабілізації ситуації. Бережіть себе. '''
         phone_number = value[1]
         today_sms[message] = phone_number
     return today_sms
