@@ -34,6 +34,7 @@ class Format():
         return self.my_list
 
     def __del_incorrects(self):
+        '''Delete phone numbers that are incorrect format'''
         try:
             for item in self.my_list:
                 if len(str(item[1])) != 9:
@@ -42,7 +43,7 @@ class Format():
             print('One or more phone numbers had an error')
 
     def __add_code_to_phone_number(self):
-        '''Check the phone number and formating it to International format'''
+        '''Formatingphone numbers to International format'''
         for item in self.my_list:
             item[1] = (f'+380{item[1]}')
         return self.my_list

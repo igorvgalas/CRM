@@ -2,42 +2,46 @@
 This module created by Ihor Halas for BNproject.
 
 Classes:
-
+ReadOrderFile
 
 Functions:
-
-
-Variable:
+extract_data
+to_array
+__filter_by_date
+__modify_data
 
 '''
 import pandas
 
 
-class ReadOrderFile():
+class ReadOrderFile:
     '''Class of ready to read files'''
 
-    def __init__(self, spreadsheet_url, sheet_name):
+    def __init__(self, spreadsheet_url, sheet_name, data_frame):
         self.spreadsheet_url = spreadsheet_url
         self.sheet_name = sheet_name
+        self.data_frame = data_frame
 
     def extract_data(self, date):
         '''Read Google Sheeds files and create DateTime column'''
         self.data_frame = pandas.read_excel(
             self.spreadsheet_url, self.sheet_name)
-        self.__filterByDate(date)
-        self.__modifyData()
+        self.__filter_by_date(date)
+        self.__modify_data()
 
-    def toArray(self):
+    def to_array(self):
         '''Put the data from dataframe to list '''
         self.data_frame = self.data_frame[[
             'Client', 'Phone_number', 'DateTime', 'Service', 'Sum', 'Payment']]
         ndarray = self.data_frame.values
         return ndarray
 
-    def __filterByDate(self, date):
+    def __filter_by_date(self, date):
+        '''Filtering data_frame by certain date and phone_number that not na'''
         self.data_frame = self.data_frame[(self.data_frame['Date'] == date) & (
             self.data_frame['Phone_number'].notna())]
 
-    def __modifyData(self):
+    def __modify_data(self):
+        '''Makes new column DateTime'''
         self.data_frame['DateTime'] = self.data_frame['Date'].astype(
             str) + " " + self.data_frame['Time'].astype(str)
