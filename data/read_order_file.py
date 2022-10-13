@@ -17,10 +17,9 @@ import pandas
 class ReadOrderFile:
     '''Class of ready to read files'''
 
-    def __init__(self, spreadsheet_url, sheet_name, data_frame):
+    def __init__(self, spreadsheet_url, sheet_name):
         self.spreadsheet_url = spreadsheet_url
         self.sheet_name = sheet_name
-        self.data_frame = data_frame
 
     def extract_data(self, date):
         '''Read Google Sheeds files and create DateTime column'''

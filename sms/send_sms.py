@@ -30,7 +30,7 @@ def send_sms(today_remaings_dict):
                 # "text": f"{key}"
                 # },
                 "sms": {
-                    "sender": "BEAUTY",
+                    "sender": "BeautyNails",
                     "text": f"{key}"
                 }
             },

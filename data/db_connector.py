@@ -24,14 +24,14 @@ class DBConnect:
 
     connection = None
 
-    def __init__(self, data_base):
-        self.data_base = data_base
+    def __init__(self, db):
+        self.db = db
 
     def get_connection(self):
         '''Get connection to DataBase'''
         if self.connection is None:
             self.connection = mysql.connector.connect(
-                host="localhost", user="root", passwd="", data_baseb=self.data_base)
+                host="localhost", user="root", passwd="", db=self.db)
         return self.connection
 
 
@@ -51,7 +51,7 @@ class DBRecords:
         cursor = self.conn.cursor()
         for client in self.client_list:
             cursor.execute(
-                'SELECT * from clients WHERE phone_number='+f'{client[1]}')
+                'SELECT * from clients WHERE phone_number ='+f'{client[1]}')
             check_exist = cursor.fetchone()
             if check_exist is not None:
                 client.append(check_exist[0])

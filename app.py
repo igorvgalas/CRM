@@ -15,9 +15,8 @@ from sms.create_sms import create_sms
 from sms.send_sms import send_sms
 
 read_order_file = ReadOrderFile(spreadsheet_url, sheet_name)
-read_order_file.extract_data(str(date.today() + timedelta(0)))
-order_list = read_order_file.toArray().tolist()
-
+read_order_file.extract_data(str(date.today() - timedelta(0)))
+order_list = read_order_file.to_array().tolist()
 sms_list = Format(order_list)
 client_list = sms_list.format_phone_number()
 
