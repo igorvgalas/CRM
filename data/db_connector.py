@@ -6,7 +6,7 @@ import mysql.connector
 
 
 class Singleton:
-    '''Class for control the connection to database by Singleton pattern.'''
+    'Class for control the connection to database by Singleton pattern.'
 
     def __init__(self, klass):
         self.klass = klass
@@ -19,8 +19,8 @@ class Singleton:
 
 
 @Singleton
-class DBConnect:
-    '''Class that provide connection to database by Singleton pattern'''
+class Connect:
+    'Class that provide connection to database by Singleton pattern'
 
     connection = None
 
@@ -28,25 +28,24 @@ class DBConnect:
         self.db = db
 
     def get_connection(self):
-        '''Get connection to DataBase'''
+        'Get connection to DataBase'
         if self.connection is None:
             self.connection = mysql.connector.connect(
                 host="localhost", user="root", passwd="", db=self.db)
         return self.connection
 
 
-class DBRecords:
-    '''Class of objects that make records to the data base in tables orders and clients'''
+class Record:
+    ' Class of record objects, make records to the table in data base.'
 
     def __init__(self, conn, client_list):
         self.client_list = client_list
         self.conn = conn
 
-    def record_orders(self):
+    def record_clients(self):
         '''For client in client list select record from client table 
         compare it, if exists add id to client and makes records to orders table, 
-        if not before adding records to order table create new row with new client 
-        in clients table
+        if not  create new row with new client in clients table
         '''
         cursor = self.conn.cursor()
         for client in self.client_list:
@@ -59,6 +58,12 @@ class DBRecords:
                 cursor.execute(
                     'INSERT INTO clients (id, client_name, phone_number) VALUES (Null,%s,%s)', client[0:2])
                 client.append(cursor.lastrowid)
+        self.conn.commit()
+
+    def record_orders(self):
+        'Add records to Orders table with client_id field'
+        cursor = self.conn.cursor()
+        for client in self.client_list:
             cursor.execute(
                 'INSERT INTO orders (id, appointment_date_time, service_name, pay_amount, pay_method, client_id) VALUES (Null,%s,%s,%s,%s,%s)', client[2:])
         self.conn.commit()
@@ -66,8 +71,8 @@ class DBRecords:
 
 if __name__ == '__main__':
 
-    db = DBConnect('bndatabase').get_connection()
-    bc = DBConnect('bndatabase').get_connection()
+    db = Connect('bndatabase').get_connection()
+    bc = Connect('bndatabase').get_connection()
 
     print(db)
     print(bc)
