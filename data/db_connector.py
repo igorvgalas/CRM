@@ -2,6 +2,7 @@
 Module that create connection using Singleton pattern
 and makes records to database
 '''
+
 import mysql.connector
 
 
@@ -43,8 +44,8 @@ class Record:
         self.conn = conn
 
     def record_clients(self):
-        '''For client in client list select record from client table 
-        compare it, if exists add id to client and makes records to orders table, 
+        '''For client in client list select record from client table
+        compare it, if exists add id to client and makes records to orders table,
         if not  create new row with new client in clients table
         '''
         cursor = self.conn.cursor()
@@ -64,9 +65,23 @@ class Record:
         'Add records to Orders table with client_id field'
         cursor = self.conn.cursor()
         for client in self.client_list:
+            client[2] = client[2][0:10]
             cursor.execute(
-                'INSERT INTO orders (id, appointment_date_time, service_name, pay_amount, pay_method, client_id) VALUES (Null,%s,%s,%s,%s,%s)', client[2:])
+                'INSERT INTO orders (id, appointment_date, service_name, pay_amount, pay_method, client_id) VALUES (Null,%s,%s,%s,%s,%s)', client[2:])
         self.conn.commit()
+
+
+class TakeRecords:
+
+    def __init__(self, conn):
+        self.conn = conn
+
+    def clients_records(self):
+        cursor = self.conn.cursor()
+        cursor.execute(
+            'SELECT client_name, phone_number from clients')
+        all_clients = cursor.fetchall()
+        return all_clients
 
 
 if __name__ == '__main__':

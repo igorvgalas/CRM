@@ -13,17 +13,21 @@ today_remaings_dict -> containe message and phone number for every appointment.
 '''
 
 import requests
-from sms.config import auth_token
+#from sms.config import auth_token
 
 
 def create_sms(order_list):
     '''Create messages from given list'''
+    today_sms = {f'{value[0]} нагадуємо у Вас запис {value[2]} Beauty nails.В разі змін повідомте на viber 0990820412': value[1]
+                 for value in order_list}
+    print(today_sms)
+    return today_sms
+
+
+def create_sms_to_all(client_list):
     today_sms = {}
-    for value in order_list:
-        message = f'''{value[0]} нагадуємо у Вас запис {value[2]} Beauty nails.В разі змін повідомте на viber 0990820412'''
-        #message = f'''{value[0]} запис {value[2]} Beauty nails скасовано.Звяжемося з Вами після стабілізації ситуації. Бережіть себе. '''
-        phone_number = value[1]
-        today_sms[message] = phone_number
+    for value in client_list:
+        today_sms[value[1]] = f'{value[0]} у нас немає перебоїв зі світлом,працюємо в звичному режимі!Є перебої зі звязком,записуватися краще через viber 0990820412.'
     return today_sms
 
 
@@ -35,14 +39,10 @@ def send_sms(today_remaings_dict):
         response = requests.post(
             'https://api.turbosms.ua/message/send.json', timeout=10,
             json={
-                "recipients": [f"{value}"],
-                # "viber": {
-                # "sender": "Mobibon",
-                # "text": f"{key}"
-                # },
+                "recipients": [f"{key}"],
                 "sms": {
                     "sender": "BeautyNails",
-                    "text": f"{key}"
+                    "text": f"{value}"
                 }
             },
             headers={

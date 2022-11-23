@@ -30,7 +30,7 @@ class Format():
         '''Format date time to make it shorter for sms sending'''
         for item in self.my_list:
             item[2] = datetime.strptime(item[2], '%Y-%m-%d %H:%M:%S')
-            item[2] = datetime.strftime(item[2], "%H:%M %d/%m")
+            item[2] = datetime.strftime(item[2], '%H:%M %d/%m')
         return self.my_list
 
     def __del_incorrects(self):

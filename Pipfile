@@ -11,6 +11,7 @@ openpyxl = "*"
 mysql = "*"
 mysql-connector-python = "*"
 numpy = "*"
+django = "*"
 
 [dev-packages]
 pylint = "*"

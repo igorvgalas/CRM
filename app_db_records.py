@@ -9,7 +9,7 @@ from data.format import Format
 from data.db_connector import Connect, Record
 
 order_file = ReadOrderFile(spreadsheet_url, sheet_name)
-order_file.extract_data(str(date.today() - timedelta(1)))
+order_file.extract_data(str(date.today() - timedelta(0)))
 order_list = order_file.to_array().tolist()
 sms_list = Format(order_list)
 client_list = sms_list.format_phone_number()
