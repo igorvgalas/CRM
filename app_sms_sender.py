@@ -12,13 +12,13 @@ from sms.sms_module import create_sms, send_sms
 
 
 order_file = ReadOrderFile(spreadsheet_url, sheet_name)
-order_file.extract_data(str(date.today() + timedelta(1)))
+curent_date = str(date.today() + timedelta(1))
+order_file.extract_data(curent_date)
 order_list = order_file.to_array().tolist()
 
 sms_list = Format(order_list)
 sms_list.format_phone_number()
 formated_sms_list = sms_list.format_date_time()
-print(len(formated_sms_list))
 today_reminder = create_sms(formated_sms_list)
-print(len(today_reminder.keys()))
-# send_sms(today_reminder)
+send_sms(today_reminder)
+print(f'{curent_date} Done')

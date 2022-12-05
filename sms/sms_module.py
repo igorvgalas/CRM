@@ -13,14 +13,13 @@ today_remaings_dict -> containe message and phone number for every appointment.
 '''
 
 import requests
-#from sms.config import auth_token
+from sms.config import auth_token
 
 
 def create_sms(order_list):
     '''Create messages from given list'''
     today_sms = {f'{value[0]} нагадуємо у Вас запис {value[2]} Beauty nails.В разі змін повідомте на viber 0990820412': value[1]
                  for value in order_list}
-    print(today_sms)
     return today_sms
 
 
@@ -39,10 +38,10 @@ def send_sms(today_remaings_dict):
         response = requests.post(
             'https://api.turbosms.ua/message/send.json', timeout=10,
             json={
-                "recipients": [f"{key}"],
+                "recipients": [f"{value}"],
                 "sms": {
                     "sender": "BeautyNails",
-                    "text": f"{value}"
+                    "text": f"{key}"
                 }
             },
             headers={
