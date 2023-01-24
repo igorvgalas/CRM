@@ -8,7 +8,7 @@ from data.read_order_file import ReadOrderFile
 from data.format import Format
 from data.db_connector import Connect, Record
 
-curent_date = str(date.today() - timedelta(2))
+curent_date = str(date.today() - timedelta(1))
 order_file = ReadOrderFile(spreadsheet_url, sheet_name)
 order_file.extract_data(curent_date)
 order_list = order_file.to_array().tolist()
