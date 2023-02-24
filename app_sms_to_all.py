@@ -1,4 +1,4 @@
-from data.configdata import database_name
+from configdata import database_name
 from data.db_connector import Connect, TakeRecords
 from sms.sms_module import create_sms_to_all, send_sms
 

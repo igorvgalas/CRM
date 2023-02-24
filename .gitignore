@@ -1,5 +1,4 @@
 my_env/
-send.py
 config.py
 configdata.py
 db.sqlite3

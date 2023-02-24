@@ -5,13 +5,13 @@ modify it.
 After that create and send remainding message to the client.
 '''
 from datetime import timedelta, date
-from data.configdata import spreadsheet_url, sheet_name
+from configdata import spreadsheet_url, sheet_name
 from data.read_order_file import ReadOrderFile
 from data.format import Format
 from sms.sms_module import create_sms, send_sms
 
 
-order_file = ReadOrderFile(spreadsheet_url, sheet_name)
+order_file = ReadOrderFile(spreadsheet_url, sheet_name[1])
 curent_date = str(date.today() + timedelta(1))
 order_file.extract_data(curent_date)
 order_list = order_file.to_array().tolist()
