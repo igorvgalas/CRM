@@ -4,14 +4,14 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pandas = "*"
 "path.py" = "*"
 pydrive = "*"
 openpyxl = "*"
-mysql = "*"
 mysql-connector-python = "*"
 numpy = "*"
 django = "*"
+pandas = "*"
+mysql = "*"
 
 [dev-packages]
 pylint = "*"

@@ -7,12 +7,13 @@ from configdata import spreadsheet_url, sheet_name, database_name
 from data.read_order_file import ReadOrderFile
 from data.format import Format
 from data.db_connector import Connect, Record
-import datetime
+
 
 #curent_date = str(date.today() - timedelta(1))
-start = datetime.datetime.strptime("2023-02-01", "%Y-%m-%d")
-end = datetime.datetime.strptime("2023-02-19", "%Y-%m-%d")
-date_generated = [(start + datetime.timedelta(days=x)).strftime("%Y-%m-%d") for x in range(0, (end-start).days+1)]
+start = datetime.datetime.strptime("2023-02-20", "%Y-%m-%d")
+end = datetime.datetime.strptime("2023-02-26", "%Y-%m-%d")
+date_generated = [(start + datetime.timedelta(days=x)).strftime("%Y-%m-%d")
+                  for x in range(0, (end-start).days+1)]
 
 conn = Connect(database_name).get_connection()
 for curent_date in date_generated:
@@ -26,5 +27,3 @@ for curent_date in date_generated:
     recorder.record_orders()
 
 print(f'For {sheet_name[1]} done. Congrats.')
-
-
