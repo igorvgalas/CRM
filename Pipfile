@@ -12,6 +12,7 @@ numpy = "*"
 django = "*"
 pandas = "*"
 mysql = "*"
+requests = "*"
 
 [dev-packages]
 pylint = "*"

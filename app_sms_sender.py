@@ -11,7 +11,7 @@ from data.format import Format
 from sms.sms_module import create_sms, send_sms
 
 
-order_file = ReadOrderFile(spreadsheet_url, sheet_name[1])
+order_file = ReadOrderFile(spreadsheet_url, sheet_name[2])
 curent_date = str(date.today() + timedelta(1))
 order_file.extract_data(curent_date)
 order_list = order_file.to_array().tolist()
@@ -22,5 +22,5 @@ formated_sms_list = sms_list.format_date_time()
 today_reminder = create_sms(formated_sms_list)
 send_sms(today_reminder)
 
-with open("/Users/pro/Documents/my_repo/CRM/log_file.txt", "a", encoding="utf-8") as file:
+with open("/Users/cheef/Documents/CRM/log_file.txt", "a", encoding="utf-8") as file:
     file.write(f'{curent_date} смс нагадування відправлено успішно')
