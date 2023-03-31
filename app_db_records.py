@@ -10,14 +10,14 @@ from data.db_connector import Connect, Record
 
 
 #curent_date = str(date.today() - timedelta(1))
-start = datetime.datetime.strptime("2023-03-13", "%Y-%m-%d")
-end = datetime.datetime.strptime("2023-03-19", "%Y-%m-%d")
+start = datetime.datetime.strptime("2023-03-20", "%Y-%m-%d")
+end = datetime.datetime.strptime("2023-03-26", "%Y-%m-%d")
 date_generated = [(start + datetime.timedelta(days=x)).strftime("%Y-%m-%d")
                   for x in range(0, (end-start).days+1)]
 
 conn = Connect(database_name).get_connection()
 for curent_date in date_generated:
-    order_file = ReadOrderFile(spreadsheet_url, sheet_name[2])
+    order_file = ReadOrderFile(spreadsheet_url, sheet_name[3])
     order_file.extract_data(curent_date)
     order_list = order_file.to_array().tolist()
     sms_list = Format(order_list)
@@ -26,4 +26,4 @@ for curent_date in date_generated:
     recorder.record_clients()
     recorder.record_orders()
 
-print(f'For {sheet_name[2]} done. Congrats.')
+print(f'For {sheet_name[3]} done. Congrats.')

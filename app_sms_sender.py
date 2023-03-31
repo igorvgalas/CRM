@@ -22,5 +22,9 @@ formated_sms_list = sms_list.format_date_time()
 today_reminder = create_sms(formated_sms_list)
 send_sms(today_reminder)
 
-with open("/Users/cheef/Documents/CRM/log_file.txt", "a", encoding="utf-8") as file:
+with open("/Users/cheef/Documents/CRM/log_file.txt", "a+", encoding="utf-8") as file:
+    file.seek(0)
+    data = file.read(100)
+    if len(data)>0:
+        file.write("\n")
     file.write(f'{curent_date} смс нагадування відправлено успішно')
