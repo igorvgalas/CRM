@@ -14,7 +14,7 @@ from datetime import date, timedelta
 
 today = date.today()
 next_day = str(today + timedelta(1))
-curent_date = str(today)
+curent_date = str(today-timedelta(1))
 curent_month = today.month 
 print(curent_month)
 
@@ -36,7 +36,7 @@ recorder = Record(conn, client_list_done)
 recorder.record_clients()
 recorder.record_orders()
 
-with open("~/CRM/log_file.txt", "a+", encoding="utf-8") as file:
+with open("CRM/log_file.txt", "a+", encoding="utf-8") as file:
     file.seek(0)
     data = file.read(100)
     if len(data)>0:
