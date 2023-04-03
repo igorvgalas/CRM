@@ -32,7 +32,7 @@ class Connect:
         'Get connection to DataBase'
         if self.connection is None:
             self.connection = mysql.connector.connect(
-                host="localhost", user="root", passwd="", db=self.db)
+                host="bndatabase.ceog77vegcpa.eu-north-1.rds.amazonaws.com", user="admin", passwd="IhorHalas", db=self.db)
         return self.connection
 
 

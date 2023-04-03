@@ -5,11 +5,8 @@ name = "pypi"
 
 [packages]
 "path.py" = "*"
-pydrive = "*"
-openpyxl = "*"
 mysql-connector-python = "*"
 numpy = "*"
-django = "*"
 pandas = "*"
 mysql = "*"
 requests = "*"
@@ -19,4 +16,4 @@ pylint = "*"
 autopep8 = "*"
 
 [requires]
-python_version = "3.11"
+python_version = "3.10"
