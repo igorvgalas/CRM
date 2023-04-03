@@ -7,7 +7,7 @@ modify it and add needed data to database in table Orders and Clients
 '''
 from configdata import spreadsheet_url, sheet_name, database_name
 from data.read_order_file import ReadOrderFile
-from data.format import Format
+from data.Format import Format
 from sms.sms_module import create_sms, send_sms
 from data.db_connector import Connect, Record
 from datetime import date, timedelta
