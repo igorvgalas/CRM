@@ -10,10 +10,12 @@ numpy = "*"
 pandas = "*"
 mysql = "*"
 requests = "*"
+mysqlclient = "*"
+openpyxl = "*"
 
 [dev-packages]
 pylint = "*"
 autopep8 = "*"
 
 [requires]
-python_version = "3.10"
+python_version = "3.10.6-1~22.04"
