@@ -14,7 +14,7 @@ from datetime import date, timedelta
 
 today = date.today()
 next_day = str(today + timedelta(1))
-curent_date = str(today-timedelta(1))
+curent_date = str(today)
 curent_month = today.month 
 print(curent_month)
 
