@@ -1,5 +1,5 @@
 my_env/
-config.py
+sms/config.py
 configdata.py
 db.sqlite3
 db.sqlite3.sqbpro
