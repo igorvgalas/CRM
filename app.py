@@ -15,8 +15,7 @@ from datetime import date, timedelta
 today = date.today()
 next_day = str(today + timedelta(1))
 curent_date = str(today)
-curent_month = today.month 
-print(curent_month)
+curent_month = today.month
 
 order_file = ReadOrderFile(spreadsheet_url, sheet_name[curent_month-1])
 order_file.extract_data(next_day)
