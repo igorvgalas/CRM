@@ -24,7 +24,7 @@ sms_list = Format(order_list)
 sms_list.format_phone_number()
 formated_sms_list = sms_list.format_date_time()
 today_reminder = create_sms(formated_sms_list)
-#send_sms(today_reminder)
+send_sms(today_reminder)
 
 conn = Connect(database_name).get_connection()
 order_file.extract_data(curent_date)
