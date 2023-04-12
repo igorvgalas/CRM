@@ -47,3 +47,4 @@ class ReadOrderFile:
         '''Makes new column DateTime'''
         self.data_frame['DateTime'] = self.data_frame['Date'].astype(
             str) + " " + self.data_frame['Time'].astype(str)
+        

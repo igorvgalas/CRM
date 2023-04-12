@@ -14,7 +14,7 @@ from datetime import date, timedelta
 
 today = date.today()
 next_day = str(today + timedelta(1))
-curent_date = str(today)
+curent_date = str(today) 
 curent_month = today.month
 
 order_file = ReadOrderFile(spreadsheet_url, sheet_name[curent_month-1])
@@ -40,4 +40,4 @@ with open("log_file.txt", "a+", encoding="utf-8") as file:
     data = file.read(100)
     if len(data)>0:
         file.write("\n")
-    file.write(f'{next_day} смс нагадування відправлено і {curent_date} запис в БД проведено успішно')
+    file.write(f'смс нагадування за {next_day} відправлено і запис в БД за {curent_date} проведено успішно')
