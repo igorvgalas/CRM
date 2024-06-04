@@ -4,6 +4,7 @@ and makes records to database
 '''
 
 import mysql.connector
+from configdata import host, user, passwd
 
 
 class Singleton:
@@ -32,7 +33,7 @@ class Connect:
         'Get connection to DataBase'
         if self.connection is None:
             self.connection = mysql.connector.connect(
-                host="bndataba.mysql.network:10340", user="bndatabase", passwd="IhorHalas", db=self.db)
+                host=host, user=user, passwd=passwd, db=self.db)
         return self.connection
 
 
