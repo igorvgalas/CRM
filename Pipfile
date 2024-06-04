@@ -6,12 +6,12 @@ name = "pypi"
 [packages]
 "path.py" = "*"
 mysql-connector-python = "*"
-numpy = "*"
 pandas = "*"
 mysql = "*"
 requests = "*"
 mysqlclient = "*"
 openpyxl = "*"
+numpy = "*"
 
 [dev-packages]
 pylint = "*"
