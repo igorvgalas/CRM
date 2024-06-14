@@ -11,16 +11,18 @@ from data.Format import Format
 from data.db_connector import Connect, Record
 
 
-def get_past_week_dates(start_date="2024-06-03"):
-    '''Get the list of dates for the past week'''
-    if start_date is None:
+def get_past_week_dates(start_date=None):
+    """ Get the list of dates for the past week """
+    if start_date is not None:
+        start_date = datetime.strptime(start_date, "%Y-%m-%d")
+    else:
         start_date = datetime.now()
     past_week_dates = [start_date - timedelta(days=i) for i in range(7)]
     return past_week_dates
 
 
 # Get the list of dates for the past week
-past_week_dates = get_past_week_dates()
+past_week_dates = get_past_week_dates("2024-06-03")
 conn = Connect(database_name).get_connection()
 
 for curr_date in past_week_dates:
