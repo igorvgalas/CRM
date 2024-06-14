@@ -4,5 +4,4 @@ configdata.py
 db.sqlite3
 db.sqlite3.sqbpro
 app_sms_sender.py
-app_db_records.py
 app_sms_to_all.py

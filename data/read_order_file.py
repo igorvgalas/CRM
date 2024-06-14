@@ -11,8 +11,8 @@ __filter_by_date
 __modify_data
 
 '''
-import pandas
 import ssl
+import pandas
 ssl._create_default_https_context = ssl._create_unverified_context
 
 
@@ -22,6 +22,7 @@ class ReadOrderFile:
     def __init__(self, spreadsheet_url, sheet_name):
         self.spreadsheet_url = spreadsheet_url
         self.sheet_name = sheet_name
+        self.data_frame = None
 
     def extract_data(self, date):
         '''Read Google Sheeds files and create DateTime column'''
@@ -40,19 +41,21 @@ class ReadOrderFile:
 
     def __filter_by_date(self, date):
         '''Filtering data_frame by certain date and phone_number that is not na'''
-    
+
         # Ensure the 'Date' column is in datetime format
         self.data_frame['Date'] = pandas.to_datetime(self.data_frame['Date'])
-    
-        # Normalize the time component to midnight or just focus on the date component for comparison
-        self.data_frame['Date'] = self.data_frame['Date'].dt.normalize()
-    
-        # Convert input date string to datetime, ensuring it matches the format of the DataFrame's 'Date' column
-        filter_date = pandas.to_datetime(date).normalize()
-    
-        # Now filter the DataFrame
-        self.data_frame = self.data_frame[(self.data_frame['Date'] == filter_date) & (self.data_frame['Phone_number'].notna())]
 
+        # Normalize the time component to midnight
+        # or just focus on the date component for comparison
+        self.data_frame['Date'] = self.data_frame['Date'].dt.normalize()
+
+        # Convert input date string to datetime,
+        # ensuring it matches the format of the DataFrame's 'Date' column
+        filter_date = pandas.to_datetime(date).normalize()
+
+        # Now filter the DataFrame
+        self.data_frame = self.data_frame[(self.data_frame['Date'] == filter_date) & (
+            self.data_frame['Phone_number'].notna())]
 
     def __modify_data(self):
         '''Makes new column DateTime'''
